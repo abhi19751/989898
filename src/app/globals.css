@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-bg {
+  background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.nav-link:hover {
+  color: #a777e3;
+}
+.ai-model-icon {
+  transition: all 0.3s ease;
+}
+.ai-model-icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(167, 119, 227, 0.6));
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
