@@ -1,0 +1,276 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link:hover {
+            color: #a777e3;
+        }
+        .ai-model-icon {
+            transition: all 0.3s ease;
+        }
+        .ai-model-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(167, 119, 227, 0.6));
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden fixed top-4 right-4 z-50">
+        <button id="mobile-menu-button" class="p-2 rounded-md text-gray-700 hover:text-purple-600 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar/Navigation -->
+    <div id="sidebar" class="hidden md:block fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center justify-center p-4 border-b">
+            <img src="/logo.png" alt="Logo" class="h-8 w-8 mr-2">
+            <span class="text-xl font-bold text-purple-600">Prompt-Generators.com</span>
+        </div>
+        <nav class="p-4 overflow-y-auto h-[calc(100vh-60px)]">
+            <div class="mb-6">
+                <a href="/" class="block py-2 px-4 rounded-lg bg-purple-100 text-purple-600 font-medium">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">Popular</h3>
+                <ul>
+                    <li><a href="/ai-prompt-generator" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-magic mr-2"></i> Generate Prompts</a></li>
+                    <li><a href="/image-to-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-image mr-2"></i> Image to Prompt</a></li>
+                    <li><a href="/ai-prompt-enhancer" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-star mr-2"></i> Prompt Enhancer</a></li>
+                    <li><a href="/ai-agent-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-robot mr-2"></i> AI Agent prompt</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">AI Generators</h3>
+                <ul>
+                    <li><a href="/ai-image-generator" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-paint-brush mr-2"></i> AI Image Generator</a></li>
+                    <li><a href="/ai-avatar-generator" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-user-circle mr-2"></i> AI Avatar Generator</a></li>
+                    <li><a href="/ai-humanizer" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-handshake mr-2"></i> AI Humanizer</a></li>
+                    <li><a href="/translate" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-language mr-2"></i> Translate</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Category</h3>
+                <ul>
+                    <li><a href="/writing-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-pen-fancy mr-2"></i> Writing Prompt</a></li>
+                    <li><a href="/art-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-palette mr-2"></i> Art Prompt</a></li>
+                    <li><a href="/drawing-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-pencil-ruler mr-2"></i> Drawing Prompt</a></li>
+                    <li><a href="/storytelling-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-book-open mr-2"></i> Storytelling Prompt</a></li>
+                    <li><a href="/coding-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-code mr-2"></i> Coding Prompt</a></li>
+                    <li><a href="/random-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-random mr-2"></i> Random Prompt</a></li>
+                    <li><a href="/character-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-user-friends mr-2"></i> Character Prompt</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Model</h3>
+                <ul>
+                    <li><a href="/chatgpt-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fab fa-google mr-2"></i> ChatGPT Prompt</a></li>
+                    <li><a href="/gemini-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-gem mr-2"></i> Gemini Prompt</a></li>
+                    <li><a href="/deepseek-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-search mr-2"></i> Deepseek Prompt</a></li>
+                    <li><a href="/grok-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fab fa-twitter mr-2"></i> Grok Prompt</a></li>
+                    <li><a href="/claude-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-brain mr-2"></i> Claude Prompt</a></li>
+                    <li><a href="/qwen-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-microchip mr-2"></i> Qwen Prompt</a></li>
+                    <li><a href="/meta-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fab fa-facebook mr-2"></i> Meta Prompt</a></li>
+                    <li><a href="/mistral-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-wind mr-2"></i> Mistral Prompt</a></li>
+                    <li><a href="/manus-ai-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-hand-paper mr-2"></i> Manus AI Prompt</a></li>
+                    <li><a href="/llm-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-project-diagram mr-2"></i> LLM Prompt</a></li>
+                    <li><a href="/gpt-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-robot mr-2"></i> GPT Prompt</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Image Model</h3>
+                <ul>
+                    <li><a href="/image-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-image mr-2"></i> Image Prompt</a></li>
+                    <li><a href="/flux-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-fire mr-2"></i> Flux Prompt</a></li>
+                    <li><a href="/midjourney-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-moon mr-2"></i> Midjourney Prompt</a></li>
+                    <li><a href="/stable-diffusion-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-atom mr-2"></i> Stable Diffusion</a></li>
+                    <li><a href="/dalle-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-paint-brush mr-2"></i> DALL·E Prompt</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Media</h3>
+                <ul>
+                    <li><a href="/video-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-video mr-2"></i> Video Prompt</a></li>
+                    <li><a href="/sound-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-volume-up mr-2"></i> Sound Prompt</a></li>
+                    <li><a href="/music-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-music mr-2"></i> Music Prompt</a></li>
+                    <li><a href="/lyrics-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-quote-right mr-2"></i> Lyrics Prompt</a></li>
+                    <li><a href="/song-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-compact-disc mr-2"></i> Song Prompt</a></li>
+                    <li><a href="/tone-prompt" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-sliders-h mr-2"></i> Tone Prompt</a></li>
+                </ul>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="#" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                    <i class="fas fa-coffee mr-2"></i> Support Us
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Overlay for mobile menu -->
+    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-30"></div>
+
+    <!-- Main Content -->
+    <div class="md:ml-64">
+        <slot />
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="/logo.png" alt="Logo" class="h-8 w-8 mr-2">
+                        <span class="text-xl font-bold text-white">Prompt-Generators.com</span>
+                    </div>
+                    <p class="mb-4">The ultimate tool for creating perfect AI prompts for various platforms and models.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/ai-prompt-generator" class="hover:text-white transition-colors">Generate Prompts</a></li>
+                        <li><a href="/image-to-prompt" class="hover:text-white transition-colors">Image to Prompt</a></li>
+                        <li><a href="/ai-prompt-enhancer" class="hover:text-white transition-colors">Prompt Enhancer</a></li>
+                        <li><a href="/ai-agent-prompt" class="hover:text-white transition-colors">AI Agent prompt</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Disclaimer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p>© 2025 <a href="#" class="text-white hover:underline">Prompt-Generators.com</a>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('transform');
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('transform');
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            });
+        }
+
+        // FAQ accordion
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    document.querySelectorAll('.accordion-content').forEach(c => {
+                        c.style.maxHeight = null;
+                        const i = c.previousElementSibling.querySelector('i');
+                        if (i) {
+                            i.classList.remove('fa-chevron-up');
+                            i.classList.add('fa-chevron-down');
+                        }
+                    });
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
