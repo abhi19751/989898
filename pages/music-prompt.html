@@ -1,0 +1,29 @@
+{{layout:layout.html}}
+{{title:Music Prompt Generator}}
+
+{{content}}
+<section class="gradient-bg text-white py-16 md:py-24 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Music Prompt Generator</h1>
+        <p class="text-lg mb-8 opacity-90">
+            Generate ideas for your next musical composition.
+        </p>
+    </div>
+</section>
+
+<section class="py-16 px-4 md:px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div>
+            <h2 class="text-2xl font-bold mb-4">Generate Music Prompt</h2>
+            <form id="music-prompt-form">
+                <div class="mb-4">
+                    <label for="music-prompt-topic" class="block text-gray-700 font-bold mb-2">Enter a topic (optional):</label>
+                    <input type="text" id="music-prompt-topic" name="music-prompt-topic" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" placeholder="e.g., a song about a long journey">
+                </div>
+                <button type="submit" class="bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700">Generate Prompt</button>
+            </form>
+            <div id="music-prompt-result" class="mt-4"></div>
+        </div>
+    </div>
+</section>
+{{/content}}

@@ -1,0 +1,29 @@
+{{layout:layout.html}}
+{{title:AI Agent Prompt}}
+
+{{content}}
+<section class="gradient-bg text-white py-16 md:py-24 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">AI Agent Prompt</h1>
+        <p class="text-lg mb-8 opacity-90">
+            Generate prompts for AI agents.
+        </p>
+    </div>
+</section>
+
+<section class="py-16 px-4 md:px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div>
+            <h2 class="text-2xl font-bold mb-4">Generate AI Agent Prompt</h2>
+            <form id="ai-agent-prompt-form">
+                <div class="mb-4">
+                    <label for="ai-agent-prompt" class="block text-gray-700 font-bold mb-2">Enter your prompt for the AI agent:</label>
+                    <textarea id="ai-agent-prompt" name="ai-agent-prompt" rows="4" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" placeholder="e.g., a customer service chatbot"></textarea>
+                </div>
+                <button type="submit" class="bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700">Generate Prompt</button>
+            </form>
+            <div id="ai-agent-prompt-result" class="mt-4"></div>
+        </div>
+    </div>
+</section>
+{{/content}}

@@ -1,0 +1,29 @@
+{{layout:layout.html}}
+{{title:AI Prompt Enhancer}}
+
+{{content}}
+<section class="gradient-bg text-white py-16 md:py-24 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">AI Prompt Enhancer</h1>
+        <p class="text-lg mb-8 opacity-90">
+            Enhance your existing prompts to get better results from AI models.
+        </p>
+    </div>
+</section>
+
+<section class="py-16 px-4 md:px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div>
+            <h2 class="text-2xl font-bold mb-4">Enhance Your Prompt</h2>
+            <form id="prompt-enhancer-form">
+                <div class="mb-4">
+                    <label for="prompt-to-enhance" class="block text-gray-700 font-bold mb-2">Enter your prompt to enhance:</label>
+                    <textarea id="prompt-to-enhance" name="prompt-to-enhance" rows="4" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" placeholder="e.g., a cat"></textarea>
+                </div>
+                <button type="submit" class="bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700">Enhance Prompt</button>
+            </form>
+            <div id="enhanced-prompt-result" class="mt-4"></div>
+        </div>
+    </div>
+</section>
+{{/content}}

@@ -1,0 +1,35 @@
+{{layout:layout.html}}
+{{title:Image to Prompt}}
+
+{{content}}
+<section class="gradient-bg text-white py-16 md:py-24 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Image to Prompt</h1>
+        <p class="text-lg mb-8 opacity-90">
+            Upload an image to generate a text prompt.
+        </p>
+    </div>
+</section>
+
+<section class="py-16 px-4 md:px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Upload Image</h2>
+                <form id="image-upload-form">
+                    <div class="mb-4">
+                        <label for="image-upload" class="block text-gray-700 font-bold mb-2">Select an image:</label>
+                        <input type="file" id="image-upload" name="image-upload" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
+                    </div>
+                    <button type="submit" class="bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700">Generate Prompt</button>
+                </form>
+                <div id="prompt-result" class="mt-4"></div>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Preview</h2>
+                <div id="image-preview" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/content}}

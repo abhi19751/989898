@@ -1,0 +1,42 @@
+{{layout:layout.html}}
+{{title:AI Prompt Generator}}
+
+{{content}}
+<section class="gradient-bg text-white py-16 md:py-24 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">AI Prompt Generator</h1>
+        <p class="text-lg mb-8 opacity-90">
+            Generate optimized prompts for various AI models.
+        </p>
+    </div>
+</section>
+
+<section class="py-16 px-4 md:px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Generate Text Prompt</h2>
+                <form id="text-prompt-form">
+                    <div class="mb-4">
+                        <label for="text-prompt" class="block text-gray-700 font-bold mb-2">Enter your text prompt:</label>
+                        <textarea id="text-prompt" name="text-prompt" rows="4" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" placeholder="e.g., A cat sitting on a mat"></textarea>
+                    </div>
+                    <button type="submit" class="bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700">Generate Text</button>
+                </form>
+                <div id="text-result" class="mt-4"></div>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Generate Image Prompt</h2>
+                <form id="image-prompt-form">
+                    <div class="mb-4">
+                        <label for="image-prompt" class="block text-gray-700 font-bold mb-2">Enter your image prompt:</label>
+                        <textarea id="image-prompt" name="image-prompt" rows="4" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" placeholder="e.g., A beautiful landscape"></textarea>
+                    </div>
+                    <button type="submit" class="bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700">Generate Image</button>
+                </form>
+                <div id="image-result" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/content}}
