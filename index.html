@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Generators – AI Prompt Tools Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link:hover {
+            color: #a777e3;
+        }
+        .ai-model-icon {
+            transition: all 0.3s ease;
+        }
+        .ai-model-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(167, 119, 227, 0.6));
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden fixed top-4 right-4 z-50">
+        <button id="mobile-menu-button" class="p-2 rounded-md text-gray-700 hover:text-purple-600 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar/Navigation -->
+    <div id="sidebar" class="hidden md:block fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center justify-center p-4 border-b">
+            <img src="/logo.png" alt="Logo" class="h-8 w-8 mr-2">
+            <span class="text-xl font-bold text-purple-600">Prompt-Generators.com</span>
+        </div>
+        <nav class="p-4 overflow-y-auto h-[calc(100vh-60px)]">
+            <div class="mb-6">
+                <a href="#" class="block py-2 px-4 rounded-lg bg-purple-100 text-purple-600 font-medium">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">Popular</h3>
+                <ul>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-magic mr-2"></i> Generate Prompts</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-image mr-2"></i> Image to Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-star mr-2"></i> Prompt Enhancer</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-robot mr-2"></i> AI Agent prompt</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">AI Generators</h3>
+                <ul>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-paint-brush mr-2"></i> AI Image Generator</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-user-circle mr-2"></i> AI Avatar Generator</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-handshake mr-2"></i> AI Humanizer</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-language mr-2"></i> Translate</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Category</h3>
+                <ul>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-pen-fancy mr-2"></i> Writing Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-palette mr-2"></i> Art Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-pencil-ruler mr-2"></i> Drawing Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-book-open mr-2"></i> Storytelling Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-code mr-2"></i> Coding Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-random mr-2"></i> Random Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-user-friends mr-2"></i> Character Prompt</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Model</h3>
+                <ul>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fab fa-google mr-2"></i> ChatGPT Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-gem mr-2"></i> Gemini Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-search mr-2"></i> Deepseek Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fab fa-twitter mr-2"></i> Grok Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-brain mr-2"></i> Claude Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-microchip mr-2"></i> Qwen Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fab fa-facebook mr-2"></i> Meta Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-wind mr-2"></i> Mistral Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-hand-paper mr-2"></i> Manus AI Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-project-diagram mr-2"></i> LLM Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-robot mr-2"></i> GPT Prompt</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Image Model</h3>
+                <ul>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-image mr-2"></i> Image Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-fire mr-2"></i> Flux Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-moon mr-2"></i> Midjourney Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-atom mr-2"></i> Stable Diffusion</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-paint-brush mr-2"></i> DALL·E Prompt</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-sm uppercase font-semibold text-gray-500 mb-2 px-4">By Media</h3>
+                <ul>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-video mr-2"></i> Video Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-volume-up mr-2"></i> Sound Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-music mr-2"></i> Music Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-quote-right mr-2"></i> Lyrics Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-compact-disc mr-2"></i> Song Prompt</a></li>
+                    <li><a href="#" class="nav-link block py-2 px-4 rounded-lg hover:bg-gray-100"><i class="fas fa-sliders-h mr-2"></i> Tone Prompt</a></li>
+                </ul>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <a href="#" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                    <i class="fas fa-coffee mr-2"></i> Support Us
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Overlay for mobile menu -->
+    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-30"></div>
+
+    <!-- Main Content -->
+    <div class="md:ml-64">
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-16 md:py-24 px-4 md:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">AI Prompt Generator</h1>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-6">Create Perfect Prompts Instantly</h2>
+                        <p class="text-lg mb-8 opacity-90">
+                            Generate optimized prompts for <span class="font-semibold">ChatGPT</span>, <span class="font-semibold">Midjourney</span>, <span class="font-semibold">DALL-E</span>, and other AI tools. Transform your ideas into professional prompts with our advanced AI technology.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mb-10">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i>
+                                <span>100% Free</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bolt mr-2"></i>
+                                <span>Instant Results</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-user-shield mr-2"></i>
+                                <span>No Registration</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-globe mr-2"></i>
+                                <span>10+ Languages</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#" class="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold text-center hover:bg-gray-100 transition-colors">
+                                Start Generating Prompts
+                            </a>
+                            <a href="#" class="px-6 py-3 border-2 border-white text-white rounded-lg font-semibold text-center hover:bg-white hover:text-purple-600 transition-colors">
+                                Try Image to Prompt
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <div class="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-purple-300 opacity-20"></div>
+                            <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-blue-300 opacity-20"></div>
+                            <div class="relative bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl p-6 border border-white border-opacity-20 shadow-xl">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="font-semibold">Prompt Preview</h3>
+                                    <button class="text-sm bg-white bg-opacity-20 px-3 py-1 rounded-full flex items-center">
+                                        <i class="fas fa-copy mr-1"></i> Copy
+                                    </button>
+                                </div>
+                                <div class="bg-gray-900 bg-opacity-30 p-4 rounded-lg mb-4">
+                                    <p class="text-sm">"Create a detailed prompt for a futuristic cityscape at night, with neon lights reflecting on wet streets, cyberpunk aesthetic, highly detailed, 8K resolution, cinematic lighting, ultra-realistic, trending on ArtStation"</p>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-xs bg-white bg-opacity-10 px-2 py-1 rounded-full">Midjourney</span>
+                                    <span class="text-xs bg-white bg-opacity-10 px-2 py-1 rounded-full">DALL-E</span>
+                                    <span class="text-xs bg-white bg-opacity-10 px-2 py-1 rounded-full">Stable Diffusion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Models Section -->
+        <section class="py-16 px-4 md:px-8 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12">Perfect for creating prompts for</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="ai-model-icon w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fab fa-google text-3xl text-blue-500"></i>
+                        </div>
+                        <span class="font-medium">ChatGPT</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="ai-model-icon w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-moon text-3xl text-purple-500"></i>
+                        </div>
+                        <span class="font-medium">Midjourney</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="ai-model-icon w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-paint-brush text-3xl text-green-500"></i>
+                        </div>
+                        <span class="font-medium">DALL-E</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="ai-model-icon w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-pen-fancy text-3xl text-yellow-500"></i>
+                        </div>
+                        <span class="font-medium">Writing</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="ai-model-icon w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-atom text-3xl text-orange-500"></i>
+                        </div>
+                        <span class="font-medium">Stable Diffusion</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="ai-model-icon w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-brain text-3xl text-red-500"></i>
+                        </div>
+                        <span class="font-medium">Claude</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-16 px-4 md:px-8 bg-gray-50">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-4">Why Our AI Prompt Generator?</h2>
+                <p class="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                    Advanced AI technology meets user-friendly design for the best prompt generation experience
+                </p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mb-4 text-white">
+                            <i class="fas fa-bolt text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Lightning Fast</h3>
+                        <p class="text-gray-600">Generate professional prompts in seconds with our optimized AI engine</p>
+                    </div>
+                    
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mb-4 text-white">
+                            <i class="fas fa-brain text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Smart AI</h3>
+                        <p class="text-gray-600">Advanced algorithms understand context and generate relevant prompts</p>
+                    </div>
+                    
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mb-4 text-white">
+                            <i class="fas fa-sliders-h text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Customizable</h3>
+                        <p class="text-gray-600">Multiple enhancement types and languages for personalized results</p>
+                    </div>
+                    
+                    <div class="card-hover bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mb-4 text-white">
+                            <i class="fas fa-mobile-alt text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Mobile Ready</h3>
+                        <p class="text-gray-600">Perfect experience on desktop, tablet, and mobile devices</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 px-4 md:px-8 bg-white">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-4">Frequently Asked Questions</h2>
+                <p class="text-lg text-center text-gray-600 mb-12">
+                    Everything you need to know about our AI Prompt Generator
+                </p>
+                
+                <div class="space-y-4">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <h3 class="font-semibold">What is the AI Prompt Generator?</h3>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600">
+                                Our AI Prompt Generator is an advanced tool that helps you create optimized prompts for various AI models like ChatGPT, Midjourney, and DALL-E. It transforms your basic ideas into professional, detailed prompts that yield better results from AI systems.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <h3 class="font-semibold">How can I ensure high-quality prompts?</h3>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600">
+                                For best results, provide clear and specific input about what you want to generate. Our AI will then enhance your input with relevant details, style modifiers, and technical specifications tailored to the AI model you're targeting.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <h3 class="font-semibold">Can I customize the generated prompts?</h3>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600">
+                                Absolutely! You can edit the generated prompts directly or use our advanced options to specify tone, style, length, and other parameters before generation. The tool also allows you to regenerate prompts with different variations.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <h3 class="font-semibold">Is the tool really free to use?</h3>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600">
+                                Yes, our basic prompt generation features are completely free with no hidden costs. We may offer premium features in the future, but the core functionality will always remain free to use.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <h3 class="font-semibold">What languages are supported?</h3>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600">
+                                Currently, we support English, Spanish, French, German, Italian, Portuguese, Russian, Chinese, Japanese, and Korean. More languages will be added based on user demand.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Features Section -->
+        <section class="py-16 px-4 md:px-8 gradient-bg text-white">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12">Advanced Features</h2>
+                <p class="text-xl text-center mb-12 max-w-3xl mx-auto opacity-90">
+                    Discover powerful features that make our AI Prompt Generator the best choice for professionals
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white bg-opacity-10 p-6 rounded-xl border border-white border-opacity-20">
+                        <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-copy text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">One-Click Copy</h3>
+                        <p class="opacity-90">Instantly copy generated prompts to your clipboard with a single click for seamless workflow integration.</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 p-6 rounded-xl border border-white border-opacity-20">
+                        <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-laptop-code text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Multi-Platform Optimization</h3>
+                        <p class="opacity-90">Generate prompts tailored for specific AI models like ChatGPT, Midjourney, and DALL-E for optimal results.</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 p-6 rounded-xl border border-white border-opacity-20">
+                        <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-sliders-h text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Customizable Tone & Style</h3>
+                        <p class="opacity-90">Fine-tune your prompts by choosing a tone—from professional to creative—to match your exact needs.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#" class="inline-block px-8 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Explore All Features
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-300 py-12 px-4 md:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <img src="/logo.png" alt="Logo" class="h-8 w-8 mr-2">
+                            <span class="text-xl font-bold text-white">Prompt-Generators.com</span>
+                        </div>
+                        <p class="mb-4">The ultimate tool for creating perfect AI prompts for various platforms and models.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-facebook text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-4">Quick Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Generate Prompts</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Image to Prompt</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Prompt Enhancer</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">AI Agent prompt</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-4">Resources</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Tutorials</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-4">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Disclaimer</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pt-8 border-t border-gray-800 text-center">
+                    <p>© 2025 <a href="#" class="text-white hover:underline">Prompt-Generators.com</a>. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('transform');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        });
+        
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('hidden');
+            sidebar.classList.remove('transform');
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        });
+        
+        // FAQ accordion
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
